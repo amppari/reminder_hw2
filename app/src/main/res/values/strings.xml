@@ -1,0 +1,4 @@
+<resources>reminder
+    <string name="app_name">Assisted Reminder</string>
+    <string name="action_settings">Settings</string>
+</resources>
