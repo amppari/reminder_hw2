@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, TimeActivity::class.java)
             startActivity(intent)
         }
+
+        val dummydata = arrayOf("Maunula", "Oulunkylä", "Käpylä")
+        val reminderAdapter = ReminderAdapter(applicationContext, dummydata)
+        mainList.adapter = reminderAdapter
+
     }
 
     // TODO Testing menu
