@@ -2,11 +2,16 @@ package x.pitkanen.mobcomp.reminder
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.room.Room
 
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,11 +43,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, TimeActivity::class.java)
             startActivity(intent)
         }
+    }
 
-        val dummydata = arrayOf("Maunula", "Oulunkylä", "Käpylä")
-        val reminderAdapter = ReminderAdapter(applicationContext, dummydata)
-        mainList.adapter = reminderAdapter
-
+    override fun onResume() {
+        super.onResume()
+        refreshList()
     }
 
     // TODO Testing menu
@@ -62,4 +67,29 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun refreshList() {
+        doAsync {
+            val db = Room.databaseBuilder(
+                applicationContext,
+                ReminderAppDb::class.java,
+                "reminders").build()
+            val reminders = db.reminderDao().getReminders()
+            db.close()
+
+            uiThread {
+
+                if(reminders.isNotEmpty()){
+                    val reminderAdapter = ReminderAdapter(applicationContext, reminders)
+                    mainList.adapter = reminderAdapter
+                }
+                else
+                    toast("No active reminders")
+
+            }
+
+        }
+    }
+
+
 }
