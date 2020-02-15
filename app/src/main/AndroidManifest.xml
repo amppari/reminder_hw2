@@ -31,9 +31,6 @@
 
         <receiver android:name=".ReminderReceiver" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBMQb1LlAFtE88iBP7lCohGCSLm9mpGIUU" />
     </application>
 
 </manifest>
