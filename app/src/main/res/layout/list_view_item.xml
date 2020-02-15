@@ -8,12 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Reminder text" />
+        android:fontFamily="@font/lato"
+        android:text="Reminder text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
         android:id="@+id/itemTrigger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Trigger time" />
+        android:fontFamily="@font/lato"
+        android:text="Trigger time"
+        android:textAlignment="viewEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 </LinearLayout>
