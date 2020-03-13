@@ -102,23 +102,23 @@ class MainActivity : AppCompatActivity() {
           var notificationId = 1736
           notificationId += Random(notificationId).nextInt(1, 30)
 
-          var notificationBuilder = NotificationCompat.Builder(context, CHANNEL_ID)
+          val notificationBuilder = NotificationCompat.Builder(context, CHANNEL_ID)
               .setSmallIcon(R.drawable.ic_alarm)
-              .setContentTitle(context?.getString(R.string.app_name))
+              .setContentTitle(context.getString(R.string.app_name))
               .setContentText(message)
               .setStyle( NotificationCompat.BigTextStyle().bigText(message))
               .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
           val notificationManager =
-              context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+              context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
               val channel = NotificationChannel(
                   CHANNEL_ID,
-                  context?.getString(R.string.app_name),
+                  context.getString(R.string.app_name),
                   NotificationManager.IMPORTANCE_DEFAULT
               ).apply {
-                  description = context?.getString(R.string.app_name)
+                  description = context.getString(R.string.app_name)
               }
               notificationManager.createNotificationChannel(channel)
           }

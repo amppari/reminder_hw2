@@ -35,7 +35,9 @@
         <receiver android:name=".ReminderReceiver" />
         <receiver android:name=".GeofenceReceiver" />
 
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCtr1FjCyG-_zzlH-Z_9vyAte64tQy3OFA" />
 
     </application>
 

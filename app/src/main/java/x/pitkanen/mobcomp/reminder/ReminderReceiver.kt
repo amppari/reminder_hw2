@@ -17,7 +17,7 @@ class ReminderReceiver : BroadcastReceiver() {
         val text = intent.getStringExtra("message").toString()
         //context.toast(text)
 
-        MainActivity.showNotification(context, text!!)
+        MainActivity.showNotification(context, text)
 
         val notificationPath: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val ring = RingtoneManager.getRingtone(context, notificationPath)

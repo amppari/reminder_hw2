@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Geocoder
-import android.location.Location
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -35,9 +34,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     val GEOFENCE_ID = "REMINDER_GEO_ID"
-    val GEOFENCE_RADIUS = 500; // 500 meters
-    val GEOFENCE_EXPIRATION = 90*24*60*60*1000; // 90 days in milliseconds
-    val GEOFENCE_DELAY = 60*1000; // 1 minute in milliseconds
+    val GEOFENCE_RADIUS = 500 // 500 meters
+    val GEOFENCE_EXPIRATION = 90*24*60*60*1000 // 90 days in milliseconds
+    val GEOFENCE_DELAY = 60*1000 // 1 minute in milliseconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,7 +110,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         grantResults: IntArray) {
 
         if(requestCode != 42)
-            return;
+            return
 
         if(grantResults.isNotEmpty() && (grantResults[0]==PackageManager.PERMISSION_DENIED ||
                                       grantResults[1]==PackageManager.PERMISSION_DENIED) ) {
@@ -132,7 +131,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
             ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                var permissions = mutableListOf<String>()
+                val permissions = mutableListOf<String>()
                 permissions.add(android.Manifest.permission.ACCESS_FINE_LOCATION)
                 permissions.add(android.Manifest.permission.ACCESS_COARSE_LOCATION)
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
@@ -145,7 +144,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fusedLocationClient.lastLocation.addOnSuccessListener {//location: Location? ->
             if (it != null) {
-                var latLong = LatLng(it.latitude, it.longitude)
+                val latLong = LatLng(it.latitude, it.longitude)
                 with(googleMap) {
                     animateCamera(CameraUpdateFactory.newLatLngZoom(latLong, 13f))
                 }
